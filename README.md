@@ -4,13 +4,13 @@
 * Code Quality: Spark optimization (tuning memory and shuffle partitions).
 * Data Governance: Validation gates and automated exports.
 
-## A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
+### A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
 
-### 🚀 Project Overview
+## 🚀 Project Overview
 
 This project automates the journey of raw inventory data from CSV format into a business-ready analytical layer. It implements a "Medallion" architecture to ensure data quality and reliability at every stage.
 
-**Key Features:**
+## Key Features:
 
     * Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.
     
