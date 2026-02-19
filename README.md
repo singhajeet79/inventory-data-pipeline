@@ -1,21 +1,22 @@
-## Medallion Architecture Inventory Pipeline
+# Medallion Architecture Inventory Pipeline
+* Infrastructure: Multi-container Docker environment.
+* Data Lakehouse: Delta Lake integration with ACID transactions.
+* Code Quality: Spark optimization (tuning memory and shuffle partitions).
+* Data Governance: Validation gates and automated exports.
 
-### A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
+## A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
 
 ### 🚀 Project Overview
 
 This project automates the journey of raw inventory data from CSV format into a business-ready analytical layer. It implements a "Medallion" architecture to ensure data quality and reliability at every stage.
-Key Features
 
-    Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.
+**Key Features:**
 
-    ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.
-
-    Orchestration: Fully managed by Apache Airflow DAGs.
-
-    Data Quality: Automated validation gates before final export.
-
-    Containerization: Entire environment runs on a multi-container Docker setup.
+    - Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.\
+    - ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.\
+    - Orchestration: Fully managed by Apache Airflow DAGs.\
+    - Data Quality: Automated validation gates before final export.\
+    - Containerization: Entire environment runs on a multi-container Docker setup.
 
 ### 🏗️ Technical Architecture
 
