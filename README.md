@@ -12,10 +12,10 @@ This project automates the journey of raw inventory data from CSV format into a 
 
 **Key Features:**
 
-    - Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.\
-    - ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.\
-    - Orchestration: Fully managed by Apache Airflow DAGs.\
-    - Data Quality: Automated validation gates before final export.\
+    - Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.
+    - ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.
+    - Orchestration: Fully managed by Apache Airflow DAGs.
+    - Data Quality: Automated validation gates before final export.
     - Containerization: Entire environment runs on a multi-container Docker setup.
 
 ### 🏗️ Technical Architecture
@@ -40,29 +40,37 @@ This project automates the journey of raw inventory data from CSV format into a 
 
     Goal: Provide high-performance, query-ready data for BI tools.
 
-🛠️ Tech Stack
-Component		Technology
-Orchestration		Apache Airflow
-Processing Engine	PySpark (Spark 3.3.0)
-Storage Format		Delta Lake
-Environment		Docker & Docker Compose
-Language		Python 3.10
+## 🛠️ Tech Stack
 
-🚦 Pipeline Workflow (DAG)
+   **Component**		    **Technology**
+    
+    - Orchestration		    Apache Airflow
+
+    - Processing Engine	    PySpark (Spark 3.3.0)
+    
+    - Storage Format		Delta Lake
+    
+    - Environment		    Docker & Docker Compose
+    
+    - Language		        Python 3.10.18
+
+
+##🚦 Pipeline Workflow (DAG)
 
 The pipeline is orchestrated as follows:
 
-    Extract: Pull raw data.
+   **Extract:** Pull raw data.
+   
+   **Transform:** Clean and merge into Silver.
+   
+   **Aggregate:** Calculate metrics for Gold.
+   
+   **Validate:** Run Data Quality checks (null checks, business logic validation).
+   
+   **Export:** Generate a stakeholder-ready CSV report.
 
-    Transform: Clean and merge into Silver.
 
-    Aggregate: Calculate metrics for Gold.
-
-    Validate: Run Data Quality checks (null checks, business logic validation).
-
-    Export: Generate a stakeholder-ready CSV report.
-
-📈 Key Challenges Overcome
+## 📈 Key Challenges Overcome
 
     Schema Drift: Resolved AnalysisException during Delta Merges by implementing explicit column mapping and schema alignment.
 
@@ -71,7 +79,7 @@ The pipeline is orchestrated as follows:
     Orchestration Reliability: Handled Docker-to-Airflow communication overhead by tuning API versions and shell syntax.
 
 
-🏁 Getting Started
+## 🏁 Getting Started
 
     Clone the repository.
 
@@ -80,5 +88,8 @@ The pipeline is orchestrated as follows:
     Access the Airflow UI at localhost:8080.
 
     Trigger the medallion_inventory_pipeline DAG.
+
+
+### Be sure to stargaze the repository and also checkout [My Github Page] (singhajeet79.github.io) to contact me. Thank You.
 
 
