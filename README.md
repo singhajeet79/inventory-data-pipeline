@@ -1,7 +1,8 @@
-Medallion Architecture Inventory Pipeline
+## Medallion Architecture Inventory Pipeline
 
-A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
-🚀 Project Overview
+### A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
+
+### 🚀 Project Overview
 
 This project automates the journey of raw inventory data from CSV format into a business-ready analytical layer. It implements a "Medallion" architecture to ensure data quality and reliability at every stage.
 Key Features
@@ -16,7 +17,8 @@ Key Features
 
     Containerization: Entire environment runs on a multi-container Docker setup.
 
-🏗️ Technical Architecture
+### 🏗️ Technical Architecture
+
 1. Ingestion (Bronze Layer)
 
     Source: Raw CSV files.
