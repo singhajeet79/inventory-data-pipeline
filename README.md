@@ -98,5 +98,6 @@ The pipeline is orchestrated as follows:
     Trigger the medallion_inventory_pipeline DAG.
 
 
+---
 ### Be sure to **stargaze** the repository and check out [My GitHub Page](https://singhajeet79.github.io/) to contact me. Thank you!
 #### Thank You.
