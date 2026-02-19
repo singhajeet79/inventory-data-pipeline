@@ -12,11 +12,16 @@ This project automates the journey of raw inventory data from CSV format into a 
 
 **Key Features:**
 
-    - Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.
-    - ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.
-    - Orchestration: Fully managed by Apache Airflow DAGs.
-    - Data Quality: Automated validation gates before final export.
-    - Containerization: Entire environment runs on a multi-container Docker setup.
+    * Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.
+    
+    * ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.
+    
+    * Orchestration: Fully managed by Apache Airflow DAGs.
+    
+    * Data Quality: Automated validation gates before final export.
+    
+    * Containerization: Entire environment runs on a multi-container Docker setup.
+
 
 ### 🏗️ Technical Architecture
 
@@ -40,6 +45,7 @@ This project automates the journey of raw inventory data from CSV format into a 
 
     Goal: Provide high-performance, query-ready data for BI tools.
 
+
 ## 🛠️ Tech Stack
 
    **Component**		    **Technology**
@@ -55,7 +61,8 @@ This project automates the journey of raw inventory data from CSV format into a 
     - Language		        Python 3.10.18
 
 
-##🚦 Pipeline Workflow (DAG)
+
+## 🚦 Pipeline Workflow (DAG)
 
 The pipeline is orchestrated as follows:
 
@@ -70,13 +77,14 @@ The pipeline is orchestrated as follows:
    **Export:** Generate a stakeholder-ready CSV report.
 
 
+
 ## 📈 Key Challenges Overcome
 
-    Schema Drift: Resolved AnalysisException during Delta Merges by implementing explicit column mapping and schema alignment.
+    * Schema Drift: Resolved AnalysisException during Delta Merges by implementing explicit column mapping and schema alignment.
 
-    Resource Management: Optimized Spark shuffle partitions and driver memory to prevent OOM (Out of Memory) crashes in containerized environments.
+    * Resource Management: Optimized Spark shuffle partitions and driver memory to prevent OOM (Out of Memory) crashes in containerized environments.
 
-    Orchestration Reliability: Handled Docker-to-Airflow communication overhead by tuning API versions and shell syntax.
+    * Orchestration Reliability: Handled Docker-to-Airflow communication overhead by tuning API versions and shell syntax.
 
 
 ## 🏁 Getting Started
