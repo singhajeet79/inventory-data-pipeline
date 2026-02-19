@@ -1,0 +1,12 @@
+# Data files
+data/
+*.csv
+*.parquet
+_delta_log/
+
+# Python/Spark temp files
+__pycache__/
+.ipynb_checkpoints/
+spark-warehouse/
+metastore_db/
+derby.log
