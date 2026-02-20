@@ -99,5 +99,4 @@ The pipeline is orchestrated as follows:
 
 
 ---
-### Be sure to **stargaze** the repository and check out [My GitHub Page](https://singhajeet79.github.io/) to contact me. Thank you!
-#### Thank You.
+#### Be sure to **stargaze** the repository and check out [My GitHub Page](https://singhajeet79.github.io/) to contact me. Thank you!
