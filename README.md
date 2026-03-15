@@ -1,102 +1,80 @@
-# Medallion Architecture Inventory Pipeline
-* Infrastructure: Multi-container Docker environment.
-* Data Lakehouse: Delta Lake integration with ACID transactions.
-* Code Quality: Spark optimization (tuning memory and shuffle partitions).
-* Data Governance: Validation gates and automated exports.
+# 🏦 Medallion Architecture Inventory Pipeline
 
-#### A robust Data Engineering pipeline leveraging Apache Airflow, PySpark, and Delta Lake to process inventory data through Bronze, Silver, and Gold layers.
+[![Tech Stack](https://img.shields.io/badge/Stack-Airflow%20|%20Spark%20|%20Delta%20Lake-blue)](#-tech-stack)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/singhajeet79)
+
+A robust Data Engineering pipeline leveraging **Apache Airflow**, **PySpark**, and **Delta Lake** to process inventory data from transactional databases into a business-ready analytics layer.
+
+
 
 ## 🚀 Project Overview
 
-This project automates the journey of raw inventory data from CSV format into a business-ready analytical layer. It implements a "Medallion" architecture to ensure data quality and reliability at every stage.
+This project automates the ETL/ELT journey of inventory data using a "Medallion" architecture. It ensures data quality, ACID compliance, and schema reliability through every stage of the lifecycle—from raw ingestion to stakeholder reporting.
 
-## Key Features:
+### Key Features:
+* **Multi-Source Ingestion:** Extracting directly from Postgres transactional systems via JDBC.
+* **ACID Transactions:** Powered by **Delta Lake** for reliable Upserts (MERGE) and Schema Enforcement.
+* **Orchestration:** Fully managed via Airflow DAGs with Docker-operator integration.
+* **Data Governance:** Automated validation gates (Null checks, Business Logic verification) before final export.
+* **Resource Optimization:** Fine-tuned Spark configurations for containerized environments.
 
-    * Medallion Architecture: Separation of concerns using Bronze (Raw), Silver (Cleaned), and Gold (Aggregated) tables.
-    
-    * ACID Transactions: Powered by Delta Lake for reliable upserts (MERGE) and schema enforcement.
-    
-    * Orchestration: Fully managed by Apache Airflow DAGs.
-    
-    * Data Quality: Automated validation gates before final export.
-    
-    * Containerization: Entire environment runs on a multi-container Docker setup.
+---
 
+## 🏗️ Technical Architecture
 
-### 🏗️ Technical Architecture
+### 1. Ingestion (Bronze Layer)
+* **Source:** PostgreSQL (Inventory Warehouse).
+* **Process:** PySpark extraction with explicit type-casting for schema stability.
+* **Goal:** Maintain a 1:1 raw history with added metadata (ingestion timestamps, source system tags).
 
-1. Ingestion (Bronze Layer)
+### 2. Transformation (Silver Layer)
+* **Process:** Data cleaning, category standardization (Uppercase), and timestamp normalization.
+* **Upsert Logic:** Implements `DeltaTable.merge()` to handle change data capture (CDC), updating existing items and inserting new arrivals.
 
-    Source: Raw CSV files.
+### 3. Analytics (Gold Layer)
+* **Process:** Complex aggregations (Total Inventory Value, Item Tally per Category).
+* **Goal:** High-performance, query-ready summary tables optimized for BI tools and Executive Reporting.
 
-    Process: Python scripts extract and load data into Delta format.
-
-    Goal: Maintain a 1:1 raw history of the source data.
-
-2. Transformation (Silver Layer)
-
-    Process: Spark cleaning (standardizing categories, casting types, calculating timestamps).
-
-    Upsert Logic: Uses Delta Lake MERGE to handle updates to existing items while inserting new ones.
-
-3. Analytics (Gold Layer)
-
-    Process: Aggregations (Total Inventory Value, Average Item Cost per Category).
-
-    Goal: Provide high-performance, query-ready data for BI tools.
-
+---
 
 ## 🛠️ Tech Stack
 
-   **Component**		    **Technology**
-    
-    - Orchestration		    Apache Airflow
+| Component | Technology |
+| :--- | :--- |
+| **Orchestration** | Apache Airflow |
+| **Processing Engine** | PySpark (Spark 3.3.0+) |
+| **Storage Format** | Delta Lake (ACID compliant) |
+| **Source DB** | PostgreSQL |
+| **Environment** | Docker & Docker Compose |
+| **Language** | Python 3.10 |
 
-    - Processing Engine	    PySpark (Spark 3.3.0)
-    
-    - Storage Format		Delta Lake
-    
-    - Environment		    Docker & Docker Compose
-    
-    - Language		        Python 3.10.18
+---
 
+## 📈 Engineering Challenges Overcome
 
+* **Type Widening & Schema Evolution:** Successfully handled `AnalysisException` during the transition from `IntegerType` to `LongType` for global identifiers by implementing explicit casting and `overwriteSchema` protocols.
+* **Resource Management:** Optimized Spark shuffle partitions (`spark.sql.shuffle.partitions=1`) and driver memory (`512MB`) to ensure stability within limited Docker containers.
+* **Aggregation Logic:** Refined data metrics from simple sums to categorical counts, ensuring accurate inventory reporting.
 
-## 🚦 Pipeline Workflow (DAG)
+---
 
-The pipeline is orchestrated as follows:
+## 🚦 Pipeline Workflow
 
-   **Extract:** Pull raw data.
-   
-   **Transform:** Clean and merge into Silver.
-   
-   **Aggregate:** Calculate metrics for Gold.
-   
-   **Validate:** Run Data Quality checks (null checks, business logic validation).
-   
-   **Export:** Generate a stakeholder-ready CSV report.
+1.  **Extract:** Ingest raw Postgres data into Delta format.
+2.  **Transform:** Clean, standardize, and MERGE into Managed Silver tables.
+3.  **Aggregate:** Generate category-based metrics for Gold.
+4.  **Validate:** Execute DQ checks (Null checks & Value range validation).
+5.  **Export:** Produce a clean, stakeholder-ready CSV report.
 
-
-
-## 📈 Key Challenges Overcome
-
-    * Schema Drift: Resolved AnalysisException during Delta Merges by implementing explicit column mapping and schema alignment.
-
-    * Resource Management: Optimized Spark shuffle partitions and driver memory to prevent OOM (Out of Memory) crashes in containerized environments.
-
-    * Orchestration Reliability: Handled Docker-to-Airflow communication overhead by tuning API versions and shell syntax.
-
+---
 
 ## 🏁 Getting Started
 
-    Clone the repository.
-
-    Start the environment: docker-compose up -d.
-
-    Access the Airflow UI at localhost:8080.
-
-    Trigger the medallion_inventory_pipeline DAG.
-
+1.  **Clone the repository.**
+2.  **Start the environment:** `docker-compose up -d`.
+3.  **Access Airflow UI:** Navigate to `localhost:8080`.
+4.  **Trigger the DAG:** Run `medallion_inventory_pipeline`.
 
 ---
-#### Be sure to **stargaze** the repository and check out [My GitHub Page](https://singhajeet79.github.io/) to contact me. Thank you!
+#### Check out [My GitHub Page](https://singhajeet79.github.io/) for more AI/MLOps/Data Engineering projects. 
+**Happy Engineering!** 🚀
